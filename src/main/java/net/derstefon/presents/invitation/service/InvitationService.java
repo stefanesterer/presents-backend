@@ -1,6 +1,7 @@
 package net.derstefon.presents.invitation.service;
 
 import net.derstefon.presents.invitation.domain.Invitation;
+import net.derstefon.presents.invitation.web.CreateInvitationDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -17,8 +18,8 @@ public class InvitationService {
         return fakeDatabase.get(uuid);
     }
 
-    public Invitation persist(String name, String email) {
-        Invitation invitation = new Invitation(name, email);
+    public Invitation persist(CreateInvitationDTO createInvitationDTO) {
+        Invitation invitation = new Invitation(createInvitationDTO.getName(), createInvitationDTO.getEmail());
         fakeDatabase.put(invitation.getUuid(), invitation);
         return invitation;
     }
