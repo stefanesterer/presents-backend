@@ -19,9 +19,9 @@ public class InvitationController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST, value = "/invitation", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createInvitation(@RequestBody CreateInvitationDTO createInvitationDTO) {
+    public ResponseEntity<InvitationUUIDDTO> createInvitation(@RequestBody CreateInvitationDTO createInvitationDTO) {
         Invitation invitation = invitationService.persist(createInvitationDTO);
-        return new ResponseEntity<String>(invitation.getUuid(), HttpStatus.CREATED);
+        return new ResponseEntity<>(new InvitationUUIDDTO(invitation.getUuid()), HttpStatus.CREATED);
     }
 
 
